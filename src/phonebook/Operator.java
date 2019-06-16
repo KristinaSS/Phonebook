@@ -1,11 +1,11 @@
 package phonebook;
 
 public enum Operator {
-    A1("A1",88),
-    TELENOR("Telenor",89),
-    VIVACOM("Vivacom",87);
+    A1(88),
+    TELENOR(89),
+    VIVACOM(87);
 
-    Operator(String name, int code) {
+    Operator(int code) {
     }
 
 

@@ -2,14 +2,14 @@ package phonebook;
 
 public class PhoneNumber {
     private String prefix;
-    private short countryCallCode;
-    private byte operator;
-    private byte firstNumber;
-    private int number;
+    private CountryCode countryCallCode;
+    private Operator operator;
+    private char firstNumber;
+    private String number;
 
     private PhoneNumber() {
     }
-    public PhoneNumber(String prefix, short countryCallCode, byte operator, byte firstNumber, int number) {
+    public PhoneNumber(String prefix, CountryCode countryCallCode, Operator operator, char firstNumber, String number) {
         this.prefix = prefix;
         this.countryCallCode = countryCallCode;
         this.operator = operator;
@@ -17,7 +17,7 @@ public class PhoneNumber {
         this.number = number;
     }
 
-    public PhoneNumber(short countryCallCode, byte operator, byte firstNumber, int number) {
+    public PhoneNumber(CountryCode countryCallCode, Operator operator, char firstNumber, String number) {
         this.countryCallCode = countryCallCode;
         this.operator = operator;
         this.firstNumber = firstNumber;
@@ -32,35 +32,35 @@ public class PhoneNumber {
         this.prefix = prefix;
     }
 
-    public short getCountryCallCode() {
+    public CountryCode getCountryCallCode() {
         return countryCallCode;
     }
 
-    public void setCountryCallCode(short countryCallCode) {
+    public void setCountryCallCode(CountryCode countryCallCode) {
         this.countryCallCode = countryCallCode;
     }
 
-    public byte getOperator() {
+    public Operator getOperator() {
         return operator;
     }
 
-    public void setOperator(byte operator) {
+    public void setOperator(Operator operator) {
         this.operator = operator;
     }
 
-    public byte getFirstNumber() {
+    public char getFirstNumber() {
         return firstNumber;
     }
 
-    public void setFirstNumber(byte firstNumber) {
+    public void setFirstNumber(char firstNumber) {
         this.firstNumber = firstNumber;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 }
