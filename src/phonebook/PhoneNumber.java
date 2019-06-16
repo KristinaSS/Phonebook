@@ -48,4 +48,13 @@ public class PhoneNumber {
     public void setNumber(String number) {
         this.number = number;
     }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    @Override
+    public String toString() {
+        return "PhoneNumber: " + prefix + countryCallCode +  operator + firstNumber + number;
+    }
 }

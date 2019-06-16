@@ -105,15 +105,18 @@ public class Phonebook {
     }
 
     public static void printSortedPhonebook(Phonebook phonebook){
+        System.out.println("enter");
         if(phonebook == null){
             System.out.println("You have not created a phonebook yet!");
             return;
         }
-        bubbleSort(phonebook.getPairs());
+        phonebook.getPairs().sort((o1, o2) -> String.valueOf(o1.getName()).compareTo(o2.getName()));
+
+        System.out.println("enter1");
 
         boolean isEmpty = true;
         for(Pair pair: phonebook.getPairs()){
-            pair.toStringWithoutTimescalled();
+            System.out.println("name:"+ pair.getName()+ "  " + pair.getPhoneNumber().toString());
             isEmpty = false;
         }
         if(isEmpty){
