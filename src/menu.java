@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static phonebook.Phonebook.createPhonebook;
+import static phonebook.Phonebook.*;
 
 public class menu {
     private static final Scanner scanner = new Scanner(System.in);
@@ -24,15 +24,20 @@ public class menu {
             switch (printMenu(menu)) {
                 case 1:
                     phonebook = Phonebook.getInstance();
+                    assert phonebook!= null;
                     createPhonebook(phonebook);
                     continue;
                 case 2:
+                    addPair(phonebook);
                     continue;
                 case 3:
+                    deleteByName(phonebook);
                     continue;
                 case 4:
+                    accessByName(phonebook);
                     continue;
                 case 5:
+                    printSortedPhonebook(phonebook);
                     continue;
                 case 0:
                     System.out.println("Goodbye!");

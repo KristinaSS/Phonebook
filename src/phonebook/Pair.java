@@ -8,12 +8,13 @@ public class Pair {
     private Pair() {
     }
 
-    public Pair(String name, PhoneNumber phoneNumber) {
+    Pair(String name, PhoneNumber phoneNumber, int timesCalled) {
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.timesCalled = timesCalled;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
@@ -35,5 +36,20 @@ public class Pair {
 
     public void setTimesCalled(int timesCalled) {
         this.timesCalled = timesCalled;
+    }
+
+    @Override
+    public String toString() {
+        return "Pair{" +
+                "name='" + name + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", timesCalled=" + timesCalled +
+                '}';
+    }
+    public String toStringWithoutTimescalled() {
+        return "Pair{" +
+                "name='" + name + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                '}';
     }
 }
