@@ -1,8 +1,8 @@
 package phonebook;
 
 public enum  CountryCode {
-    BULGARIA(359);
+    BULGARIA("359");
 
-    CountryCode(int code) {
+    CountryCode(String code) {
     }
 }

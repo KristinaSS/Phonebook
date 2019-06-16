@@ -1,6 +1,10 @@
+import phonebook.Phonebook;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import static phonebook.Phonebook.createPhonebook;
 
 public class menu {
     private static final Scanner scanner = new Scanner(System.in);
@@ -13,9 +17,14 @@ public class menu {
         menu.add("4. Access Number By Name ");
         menu.add("5. Print all pairs(name,numbers) sorted By Name ");
         menu.add("0. Exit");
+
+        Phonebook phonebook = null;
+
         while (true) {
             switch (printMenu(menu)) {
                 case 1:
+                    phonebook = Phonebook.getInstance();
+                    createPhonebook(phonebook);
                     continue;
                 case 2:
                     continue;
