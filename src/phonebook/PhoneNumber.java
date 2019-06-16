@@ -1,50 +1,35 @@
 package phonebook;
 
 public class PhoneNumber {
-    private String prefix;
-    private CountryCode countryCallCode;
-    private Operator operator;
+    private String prefix = "+";
+    private String countryCallCode;
+    private String operator;
     private char firstNumber;
     private String number;
 
     private PhoneNumber() {
     }
-    public PhoneNumber(String prefix, CountryCode countryCallCode, Operator operator, char firstNumber, String number) {
-        this.prefix = prefix;
-        this.countryCallCode = countryCallCode;
+    public PhoneNumber(String operator, char firstNumber, String number) {
+        this.prefix = "+";
+        this.countryCallCode = CountryCode.BULGARIA.getValue();
         this.operator = operator;
         this.firstNumber = firstNumber;
         this.number = number;
     }
 
-    public PhoneNumber(CountryCode countryCallCode, Operator operator, char firstNumber, String number) {
-        this.countryCallCode = countryCallCode;
-        this.operator = operator;
-        this.firstNumber = firstNumber;
-        this.number = number;
-    }
-
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-
-    public CountryCode getCountryCallCode() {
+    public String getCountryCallCode() {
         return countryCallCode;
     }
 
-    public void setCountryCallCode(CountryCode countryCallCode) {
+    public void setCountryCallCode(String countryCallCode) {
         this.countryCallCode = countryCallCode;
     }
 
-    public Operator getOperator() {
+    public String getOperator() {
         return operator;
     }
 
-    public void setOperator(Operator operator) {
+    public void setOperator(String operator) {
         this.operator = operator;
     }
 

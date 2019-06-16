@@ -9,10 +9,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static phonebook.UtilsPhonebook.*;
@@ -36,10 +33,6 @@ public class Phonebook {
     private Phonebook() {
     }
 
-    public Phonebook(List<Pair> pairs) {
-        this.pairs = pairs;
-    }
-
     //Getters and setters
 
     public List<Pair> getPairs() {
@@ -53,12 +46,19 @@ public class Phonebook {
     //Functions
 
     public static void createPhonebook(Phonebook phonebook) {
+        if(phonebook.getPairs()!= null){
+            System.out.println("Phonebook already exists");
+            return;
+        }
         Pair pair;
+        List<Pair> phonelogs = new ArrayList<>();
         for (String line : readTextFile()) {
             pair = checkPair(line);
-            if(pair != null)
-                phonebook.getPairs().add(pair);
+            if(pair != null){
+                phonelogs.add(pair);
+            }
         }
+        phonebook.setPairs(phonelogs);
     }
 
     public static void addPair(Phonebook phonebook){

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -49,7 +50,7 @@ public class UtilsPhonebook {
         if(phoneNumber == null)
             return null;
 
-        return new Pair(split[0],phoneNumber,0);
+        return new Pair(split[0] ,phoneNumber,0);
     }
 
     static String enterName(){
@@ -82,70 +83,70 @@ public class UtilsPhonebook {
     private static PhoneNumber checkPhoneNumber(String number){
         Operator operator = null;
         boolean flag = false;
-
-        PhoneNumber phoneNumber = null;
+        String numberStr = null;
+        char firstNumber = ' ';
 
         if (number.charAt(0) == '+'&& number.length()== 13) {
-            if (number.substring(1, 4).equals(CountryCode.BULGARIA.toString())) {  //+359878123456
+            if (number.substring(1, 4).equals(CountryCode.BULGARIA.getValue())) {  //+359878123456
                 for(Operator o: Operator.values()){
-                    if(number.substring(4, 6).equals(o.toString())){
+                    if(number.substring(4, 6).equals(o.getValue())){
                         operator = o;
                         flag = true;
                         break;
                     }
                 }
                 if ((number.charAt(6) >= '2' || number.charAt(6) <= '9') && flag) {
-                    phoneNumber.setPrefix("+");
-                    phoneNumber.setCountryCallCode(CountryCode.BULGARIA);
-                    phoneNumber.setOperator(operator);
-                    phoneNumber.setFirstNumber(number.charAt(6));
-                    phoneNumber.setNumber(number.substring(7,13));
+                    firstNumber = number.charAt(6);
+                    numberStr = number.substring(7,13);
+                }else{
+                    operator = null;
+                    flag = false;
                 }
+
             }
         }
-        else {
-            operator = null;
-            flag = false;
             if (number.substring(0, 2).equals("00")&& number.length()== 14) {//00 359 87 8 123456,
-                if (number.substring(2, 5).equals(CountryCode.BULGARIA.toString())) {
+                if (number.substring(2, 5).equals(CountryCode.BULGARIA.getValue())) {
                     for(Operator o: Operator.values()){
-                        if(number.substring(5, 7).equals(o.toString())){
+                        if(number.substring(5, 7).equals(o.getValue())){
                             operator = o;
                             flag = true;
                             break;
                         }
                     }
                     if ((number.charAt(7) >= '2' || number.charAt(7) <= '9')&& flag) {
-                        phoneNumber.setPrefix("+");
-                        phoneNumber.setCountryCallCode(CountryCode.BULGARIA);
-                        phoneNumber.setOperator(operator);
-                        phoneNumber.setFirstNumber(number.charAt(7));
-                        phoneNumber.setNumber(number.substring(8,14));
+                        firstNumber = number.charAt(7);
+                        numberStr = number.substring(8,14);
+                    }else{
+                        operator = null;
+                        flag = false;
                     }
                 }
-            } else {
-                operator = null;
-                flag = false;
-                if (number.charAt(0) == '0' && number.length()== 10) { // 0 87 8 123456
+            }
+            if (number.charAt(0) == '0' && number.length()== 10) { // 0 87 8 123456
                     for(Operator o: Operator.values()){
-                        if(number.substring(1, 3).equals(o.toString())){
+                        if(number.substring(1, 3).equals(o.getValue())){
                             operator = o;
                             flag = true;
                             break;
                         }
                     }
                     if ((number.charAt(3) >= '2' || number.charAt(3) <= '9')&& flag) {
-                        phoneNumber.setPrefix("+");
-                        phoneNumber.setCountryCallCode(CountryCode.BULGARIA);
-                        phoneNumber.setOperator(operator);
-                        phoneNumber.setFirstNumber(number.charAt(2));
-                        phoneNumber.setNumber(number.substring(4,10));
+                        firstNumber = number.charAt(3);
+                        numberStr = number.substring(4,10);
+
+                    }else{
+                        operator = null;
+                        flag = false;
                     }
                 }
-            }
+        if (numberStr!= null){
+            PhoneNumber phoneNumber = new PhoneNumber(operator.getValue(),firstNumber,numberStr);
 
+            return phoneNumber;
         }
-        return phoneNumber;
+        return null;
+
     }
 
     static void bubbleSort(List<Pair>phonebook) {

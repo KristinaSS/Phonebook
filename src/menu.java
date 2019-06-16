@@ -24,7 +24,6 @@ public class menu {
             switch (printMenu(menu)) {
                 case 1:
                     phonebook = Phonebook.getInstance();
-                    assert phonebook!= null;
                     createPhonebook(phonebook);
                     continue;
                 case 2:
