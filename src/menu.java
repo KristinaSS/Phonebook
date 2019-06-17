@@ -21,11 +21,10 @@ public class menu {
         menu.add("0. Exit");
 
         Phonebook phonebook = null;
-        UtilsPhonebook utilsPhonebook = UtilsPhonebook.getInstance();
 
         while (true) {
             System.out.println("\n");
-            switch (printMenu(menu)) {
+            switch (UtilsPhonebook.printMenu(menu)) {
                 case 1:
                     phonebook = Phonebook.getInstance();
                     createPhonebook(phonebook);
@@ -51,21 +50,5 @@ public class menu {
             break;
         }
         System.exit(0);
-    }
-
-    private static int printMenu(List<String> menu){
-        for(String s: menu){
-            System.out.println(s);
-        }
-        int choice;
-        while(true){
-            System.out.println("Please choose from 0 to 5:");
-            choice = scanner.nextInt();
-            if(choice>5 || choice<0)
-                continue;
-            break;
-        }
-        return choice;
-
     }
 }

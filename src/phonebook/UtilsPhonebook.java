@@ -161,6 +161,21 @@ public class UtilsPhonebook {
         }
         return null;
     }
+    public static int printMenu(List<String> menu){
+        for(String s: menu){
+            System.out.println(s);
+        }
+        int choice;
+        while(true){
+            System.out.println("Please choose from 0 to 5:");
+            choice = scanner.nextInt();
+            if(choice>5 || choice<0)
+                continue;
+            break;
+        }
+        return choice;
+
+    }
 
 
 }
