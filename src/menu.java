@@ -1,5 +1,7 @@
 import phonebook.Phonebook;
+import phonebook.UtilsPhonebook;
 
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,8 +21,10 @@ public class menu {
         menu.add("0. Exit");
 
         Phonebook phonebook = null;
+        UtilsPhonebook utilsPhonebook = UtilsPhonebook.getInstance();
 
         while (true) {
+            System.out.println("\n");
             switch (printMenu(menu)) {
                 case 1:
                     phonebook = Phonebook.getInstance();
@@ -40,6 +44,8 @@ public class menu {
                     continue;
                 case 0:
                     System.out.println("Goodbye!");
+                    if(phonebook!=null)
+                        UtilsPhonebook.writeTextFile(phonebook);
                     break;
             }
             break;

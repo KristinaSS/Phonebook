@@ -48,8 +48,6 @@ public class Pair {
     }
     public String toStringWithoutTimescalled() {
         return "Pair{" +
-                "name='" + name + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                '}';
+                "name='" + name + "   " + phoneNumber +'}';
     }
 }

@@ -1,10 +1,10 @@
 package phonebook;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -37,6 +37,20 @@ public class UtilsPhonebook {
             System.out.println("Error reading File");
         }
         return lines;
+    }
+
+    public static void writeTextFile(Phonebook phonebook){
+        try {
+            FileWriter writer = new FileWriter("PhonebookOutput.txt");
+            for (Pair pair : phonebook.getPairs()) {
+                writer.write(pair.getName() + " | " + pair.getPhoneNumber().toString()+"\n");
+            }
+            writer.close();
+        }catch (IOException e){
+            e.printStackTrace();
+            System.out.println("Error writing File");
+        }
+        System.out.println("Successfully written!");
     }
 
     static Pair checkPair(String line) {
@@ -95,7 +109,7 @@ public class UtilsPhonebook {
                         break;
                     }
                 }
-                if ((number.charAt(6) >= '2' || number.charAt(6) <= '9') && flag) {
+                if ((number.charAt(6) >= '2' && number.charAt(6) <= '9') && flag) {
                     firstNumber = number.charAt(6);
                     numberStr = number.substring(7,13);
                 }else{
@@ -114,7 +128,7 @@ public class UtilsPhonebook {
                             break;
                         }
                     }
-                    if ((number.charAt(7) >= '2' || number.charAt(7) <= '9')&& flag) {
+                    if ((number.charAt(7) >= '2' && number.charAt(7) <= '9')&& flag) {
                         firstNumber = number.charAt(7);
                         numberStr = number.substring(8,14);
                     }else{
@@ -131,7 +145,7 @@ public class UtilsPhonebook {
                             break;
                         }
                     }
-                    if ((number.charAt(3) >= '2' || number.charAt(3) <= '9')&& flag) {
+                    if ((number.charAt(3) >= '2' && number.charAt(3) <= '9')&& flag) {
                         firstNumber = number.charAt(3);
                         numberStr = number.substring(4,10);
 
@@ -146,18 +160,7 @@ public class UtilsPhonebook {
             return phoneNumber;
         }
         return null;
-
     }
 
-    static void bubbleSort(List<Pair>phonebook) {
-        int n = phonebook.size();
-        for (int i = 0; i < n-1; i++)
-            for (int j = 0; j < n-i-1; j++)
-                if(phonebook.get(j).getName().compareTo(phonebook.get(j+1).getName())<0)
-                {
-                    Pair temp = phonebook.get(j);
-                    phonebook.set(j,phonebook.get(j+1));
-                    phonebook.set(j+1,temp);
-                }
-    }
+
 }

@@ -66,7 +66,22 @@ public class Phonebook {
             System.out.println("You have not created a phonebook yet!");
             return;
         }
-        phonebook.getPairs().add(new Pair(enterName(),enterPhoneNumber(),0));
+        PhoneNumber phoneNumber;
+        boolean flag = false;
+        while(true){
+            phoneNumber = enterPhoneNumber();
+            for(Pair num: phonebook.getPairs()){
+                if(num.getPhoneNumber().toString().compareTo(phoneNumber.toString())==0){
+                    flag = true;
+                }
+            }
+            if(!flag)
+                break;
+            System.out.println("PhoneNumber already exits in PhoneBook");
+        }
+        phonebook.getPairs().add(new Pair(enterName(),phoneNumber,0));
+
+        System.out.println("Number Successfully added");
 
     }
 
@@ -97,7 +112,7 @@ public class Phonebook {
         String name = enterName();
         for(Pair pair: phonebook.getPairs()){
             if(pair.getName().equals(name)) {
-                pair.toStringWithoutTimescalled();
+                System.out.println(pair.toStringWithoutTimescalled());
                 return;
             }
         }
@@ -105,18 +120,17 @@ public class Phonebook {
     }
 
     public static void printSortedPhonebook(Phonebook phonebook){
-        System.out.println("enter");
         if(phonebook == null){
             System.out.println("You have not created a phonebook yet!");
             return;
         }
         phonebook.getPairs().sort((o1, o2) -> String.valueOf(o1.getName()).compareTo(o2.getName()));
 
-        System.out.println("enter1");
-
         boolean isEmpty = true;
         for(Pair pair: phonebook.getPairs()){
-            System.out.println("name:"+ pair.getName()+ "  " + pair.getPhoneNumber().toString());
+            String s1 =String.format("%-30s","Name: " + pair.getName());
+            String s2 =String.format("%s",pair.getPhoneNumber().toString());
+            System.out.println(s1+s2);
             isEmpty = false;
         }
         if(isEmpty){
