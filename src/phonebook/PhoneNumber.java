@@ -55,6 +55,6 @@ public class PhoneNumber {
 
     @Override
     public String toString() {
-        return "PhoneNumber: " + prefix + countryCallCode +  operator + firstNumber + number;
+        return prefix + countryCallCode +  operator + firstNumber + number;
     }
 }

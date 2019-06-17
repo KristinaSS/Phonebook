@@ -16,6 +16,8 @@ import static phonebook.UtilsPhonebook.*;
 
 public class Phonebook {
 
+    private final static Scanner scanner = new Scanner(System.in);
+
     private List<Pair> pairs;
 
     //Singleton
@@ -134,6 +136,63 @@ public class Phonebook {
             isEmpty = false;
         }
         if(isEmpty){
+            System.out.println("Phonebook is empty!");
+        }
+    }
+
+    public static void callNumber(Phonebook phonebook){
+        if(phonebook == null){
+            System.out.println("You have not created a phonebook yet!");
+            return;
+        }
+        PhoneNumber phoneNumber = enterPhoneNumber();
+
+        for(Pair pair: phonebook.getPairs()){
+            if(phoneNumber.toString().equals(pair.getPhoneNumber().toString())){
+                pair.setTimesCalled(pair.getTimesCalled()+1);
+                System.out.println("Successfully called number, ended outgoing call!");
+                return;
+            }
+        }
+        String choice;
+        while(true){
+            System.out.println("No such Number exits in phone book, would you like to add it to your Phonebook? Y/N");
+            choice = scanner.next();
+            choice = choice.toUpperCase();
+            if(choice.equals("Y") || choice.equals("N")){
+                if(choice.equals("Y")){
+                    phonebook.getPairs().add(new Pair(enterName(),phoneNumber,1));
+                    System.out.println("New number Added");
+                    return;
+                }else {
+                    phonebook.getPairs().add(new Pair(phoneNumber.toString(), phoneNumber, 1));
+                    return;
+                }
+
+            }
+        }
+    }
+
+    public static void printFavNumbers(Phonebook phonebook){
+        if(phonebook == null){
+            System.out.println("You have not created a phonebook yet!");
+            return;
+        }
+        phonebook.getPairs().sort((o1, o2) -> Integer.compare(o2.getTimesCalled(), o1.getTimesCalled()));
+
+        int counter = 0;
+        System.out.println("Name -----------------------------Number-----------TimesCalled");
+        System.out.println("==============================================================");
+        for(Pair pair: phonebook.getPairs()){
+            counter++;
+            String s1 =String.format("%-30s","Name: " + pair.getName());
+            String s2 =String.format("%s",pair.getPhoneNumber().toString() + "    " + pair.getTimesCalled());
+            System.out.println(counter+". "+s1+s2);
+            if(counter == 5)
+                break;
+
+        }
+        if(counter == 0){
             System.out.println("Phonebook is empty!");
         }
     }

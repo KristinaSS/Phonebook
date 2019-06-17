@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class UtilsPhonebook {
@@ -42,7 +43,10 @@ public class UtilsPhonebook {
     public static void writeTextFile(Phonebook phonebook){
         try {
             FileWriter writer = new FileWriter("PhonebookOutput.txt");
+            String check = "+359";
             for (Pair pair : phonebook.getPairs()) {
+                if(pair.getName().toLowerCase().contains(check.toLowerCase()))
+                    continue;
                 writer.write(pair.getName() + " | " + pair.getPhoneNumber().toString()+"\n");
             }
             writer.close();
@@ -64,16 +68,21 @@ public class UtilsPhonebook {
         if(phoneNumber == null)
             return null;
 
-        return new Pair(split[0] ,phoneNumber,0);
+        Random random = new Random();
+        return new Pair(split[0] ,phoneNumber,random.nextInt(100));
     }
 
     static String enterName(){
         String name;
         while (true){
+            scanner.nextLine();
             System.out.println("Enter name:");
             name = scanner.nextLine();
             if(name.length()>30)
+            {
+                System.out.println("Name too long");
                 continue;
+            }
             break;
         }
         return name;
@@ -82,7 +91,7 @@ public class UtilsPhonebook {
     static PhoneNumber enterPhoneNumber(){
         String phoneNumberStr;
         PhoneNumber phoneNumber;
-
+        scanner.nextLine();
         while(true){
             System.out.println("Enter PhoneNumber");
             phoneNumberStr = scanner.nextLine();
@@ -119,7 +128,7 @@ public class UtilsPhonebook {
 
             }
         }
-            if (number.substring(0, 2).equals("00")&& number.length()== 14) {//00 359 87 8 123456,
+        if (number.substring(0, 2).equals("00")&& number.length()== 14) {//00 359 87 8 123456,
                 if (number.substring(2, 5).equals(CountryCode.BULGARIA.getValue())) {
                     for(Operator o: Operator.values()){
                         if(number.substring(5, 7).equals(o.getValue())){
@@ -137,7 +146,7 @@ public class UtilsPhonebook {
                     }
                 }
             }
-            if (number.charAt(0) == '0' && number.length()== 10) { // 0 87 8 123456
+        if (number.charAt(0) == '0' && number.length()== 10) { // 0 87 8 123456
                     for(Operator o: Operator.values()){
                         if(number.substring(1, 3).equals(o.getValue())){
                             operator = o;
@@ -155,21 +164,20 @@ public class UtilsPhonebook {
                     }
                 }
         if (numberStr!= null){
-            PhoneNumber phoneNumber = new PhoneNumber(operator.getValue(),firstNumber,numberStr);
-
-            return phoneNumber;
+            return new PhoneNumber(operator.getValue(),firstNumber,numberStr);
         }
         return null;
     }
+
     public static int printMenu(List<String> menu){
         for(String s: menu){
             System.out.println(s);
         }
         int choice;
         while(true){
-            System.out.println("Please choose from 0 to 5:");
+            System.out.println("Please choose from 0 to 7:");
             choice = scanner.nextInt();
-            if(choice>5 || choice<0)
+            if(choice>7 || choice<0)
                 continue;
             break;
         }

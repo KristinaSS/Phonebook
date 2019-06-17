@@ -1,7 +1,6 @@
 import phonebook.Phonebook;
 import phonebook.UtilsPhonebook;
 
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,6 +17,8 @@ public class menu {
         menu.add("3. Delete Number By Name ");
         menu.add("4. Access Number By Name ");
         menu.add("5. Print all pairs(name,numbers) sorted By Name ");
+        menu.add("6. Call Number");
+        menu.add("7. See Favourite Numbers(Most Called)");
         menu.add("0. Exit");
 
         Phonebook phonebook = null;
@@ -40,6 +41,12 @@ public class menu {
                     continue;
                 case 5:
                     printSortedPhonebook(phonebook);
+                    continue;
+                case 6:
+                    callNumber(phonebook);
+                    continue;
+                case 7:
+                    printFavNumbers(phonebook);
                     continue;
                 case 0:
                     System.out.println("Goodbye!");
