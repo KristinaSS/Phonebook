@@ -13,5 +13,4 @@ public enum Operator {
         return opCode;
     }
 
-
 }

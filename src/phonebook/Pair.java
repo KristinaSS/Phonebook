@@ -22,7 +22,7 @@ public class Pair {
         this.name = name;
     }
 
-    public PhoneNumber getPhoneNumber() {
+    PhoneNumber getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -30,11 +30,11 @@ public class Pair {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getTimesCalled() {
+    int getTimesCalled() {
         return timesCalled;
     }
 
-    public void setTimesCalled(int timesCalled) {
+    void setTimesCalled(int timesCalled) {
         this.timesCalled = timesCalled;
     }
 
@@ -46,7 +46,7 @@ public class Pair {
                 ", timesCalled=" + timesCalled +
                 '}';
     }
-    public String toStringWithoutTimescalled() {
+    String toStringWithoutTimescalled() {
         return "Pair{" +
                 "name='" + name + "   " + phoneNumber +'}';
     }
