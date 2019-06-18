@@ -28,7 +28,7 @@ public class UtilsPhonebook {
 
     //Functions
 
-    static List<String> readTextFile() {
+    public static List<String> readTextFile() {
         List<String> lines = Collections.emptyList();//C:\Users\Kristina\IdeaProjects\Phonebook\phoneBook.txt
         try {
             lines = Files.readAllLines(Paths.get("phoneBook.txt"), StandardCharsets.UTF_8);
@@ -40,7 +40,7 @@ public class UtilsPhonebook {
         return lines;
     }
 
-    public static void writeTextFile(Phonebook phonebook){
+    public static boolean writeTextFile(Phonebook phonebook){
         try {
             FileWriter writer = new FileWriter("PhonebookOutput.txt");
             String check = "+359";
@@ -55,6 +55,7 @@ public class UtilsPhonebook {
             System.out.println("Error writing File");
         }
         System.out.println("Successfully written!");
+        return true;
     }
 
     static Pair checkPair(String line) {
@@ -103,7 +104,8 @@ public class UtilsPhonebook {
         return phoneNumber;
     }
 
-    private static PhoneNumber checkPhoneNumber(String number){
+
+    public static PhoneNumber checkPhoneNumber(String number){
         Operator operator = null;
         boolean flag = false;
         String numberStr = null;

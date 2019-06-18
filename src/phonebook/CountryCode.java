@@ -7,7 +7,7 @@ public enum  CountryCode {
     CountryCode(String code) {
         cCode = code;
     }
-    String getValue(){
+    public String getValue(){
         return cCode;
     }
 }

@@ -9,7 +9,7 @@ public enum Operator {
     Operator(String code) {
         opCode = code;
     }
-    String getValue(){
+    public String getValue(){
         return opCode;
     }
 
