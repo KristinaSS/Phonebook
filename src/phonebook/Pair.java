@@ -1,20 +1,27 @@
 package phonebook;
 
 public class Pair {
+    private static Pair pairInstance = null;
     private String name;
     private PhoneNumber phoneNumber;
     private int timesCalled;
 
+    public static Pair getInstance() {
+        if (pairInstance == null)
+            pairInstance = new Pair();
+        return pairInstance;
+    }
+
     private Pair() {
     }
 
-    Pair(String name, PhoneNumber phoneNumber, int timesCalled) {
+    public Pair(String name, PhoneNumber phoneNumber, int timesCalled) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.timesCalled = timesCalled;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
@@ -22,7 +29,7 @@ public class Pair {
         this.name = name;
     }
 
-    PhoneNumber getPhoneNumber() {
+    public PhoneNumber getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -30,11 +37,11 @@ public class Pair {
         this.phoneNumber = phoneNumber;
     }
 
-    int getTimesCalled() {
+    public int getTimesCalled() {
         return timesCalled;
     }
 
-    void setTimesCalled(int timesCalled) {
+    public void setTimesCalled(int timesCalled) {
         this.timesCalled = timesCalled;
     }
 
@@ -46,7 +53,7 @@ public class Pair {
                 ", timesCalled=" + timesCalled +
                 '}';
     }
-    String toStringWithoutTimescalled() {
+    public String toStringWithoutTimescalled() {
         return "Pair{" +
                 "name='" + name + "   " + phoneNumber +'}';
     }
