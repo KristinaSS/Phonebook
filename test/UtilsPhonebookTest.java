@@ -17,7 +17,7 @@ import static phonebook.UtilsPhonebook.checkPhoneNumber;
 
 class UtilsPhonebookTest {
     @Test
-    void readTextFile() throws IOException{
+    void readTextFile() throws IOException {
         List<String> lines = new ArrayList<>();
         assertTrue(lines.isEmpty());
         lines = Files.readAllLines(Paths.get("phoneBook.txt"), StandardCharsets.UTF_8);
@@ -25,21 +25,21 @@ class UtilsPhonebookTest {
     }
 
     @Test
-    void writeTextFile() throws IOException{
+    void writeTextFile() throws IOException {
         Phonebook phonebook = Phonebook.getInstance();
-            FileWriter writer = new FileWriter("PhonebookOutput.txt");
-            String check = "+359";
-            List<Pair> testList = new ArrayList<>();
-            phonebook.setPairs(testList);
-            for (Pair pair : phonebook.getPairs()) {
-                if(pair.getName().toLowerCase().contains(check.toLowerCase())){
-                    continue;
-                }
-                writer.write(pair.getName() + " | " + pair.getPhoneNumber().toString()+"\n");
-                writer.close();
+        FileWriter writer = new FileWriter("PhonebookOutput.txt");
+        String check = "+359";
+        List<Pair> testList = new ArrayList<>();
+        phonebook.setPairs(testList);
+        for (Pair pair : phonebook.getPairs()) {
+            if (pair.getName().toLowerCase().contains(check.toLowerCase())) {
+                continue;
             }
-            assertDoesNotThrow((ThrowingSupplier<Exception>) IOException::new);
-            assertTrue(UtilsPhonebook.writeTextFile(phonebook));
+            writer.write(pair.getName() + " | " + pair.getPhoneNumber().toString() + "\n");
+            writer.close();
+        }
+        assertDoesNotThrow((ThrowingSupplier<Exception>) IOException::new);
+        assertTrue(UtilsPhonebook.writeTextFile(phonebook));
     }
 
     @Test
@@ -51,11 +51,11 @@ class UtilsPhonebookTest {
 
         PhoneNumber phoneNumber = UtilsPhonebook.checkPhoneNumber(split[1]);
 
-        if(phoneNumber == null)
+        if (phoneNumber == null)
             assertNull(phoneNumber);
 
         Random random = new Random();
-        Pair pair  =  new Pair(split[0] ,phoneNumber,random.nextInt(100));
+        Pair pair = new Pair(split[0], phoneNumber, random.nextInt(100));
         assertNotNull(pair);
     }
 
@@ -63,17 +63,18 @@ class UtilsPhonebookTest {
     void enterName() {
         String name;
         name = "Test";
-        assertTrue(name.length()<30);
+        assertTrue(name.length() < 30);
     }
 
     @Test
     void enterPhoneNumber() {
         String phoneNumberStr = "0888888888";
         PhoneNumber phoneNumber;
-        assertTrue(phoneNumberStr.length()>0);
+        assertTrue(phoneNumberStr.length() > 0);
         phoneNumber = UtilsPhonebook.checkPhoneNumber(phoneNumberStr);
         assertNotNull(phoneNumber);
     }
+
     @Test
     void checkPhoneNumber() {
         Operator operator = null;
@@ -88,11 +89,12 @@ class UtilsPhonebookTest {
         assertNull(numberStr);
         assertEquals(firstNumber, ' ');
 
-        assertEquals(number.charAt(0),'+');
+        assertEquals(number.charAt(0), '+');
         assertEquals(13, number.length());
         assertEquals(number.substring(1, 4), CountryCode.BULGARIA.getValue());
-        for(Operator o: Operator.values()){
-            if(number.substring(4, 6).equals(o.getValue())){
+        assertTrue(number.substring(4, 6).matches("\\d+"));
+        for (Operator o : Operator.values()) {
+            if (number.substring(4, 6).equals(o.getValue())) {
                 operator = o;
                 flag = true;
                 break;
@@ -104,7 +106,7 @@ class UtilsPhonebookTest {
         numberStr = number.substring(7, 13);
 
         assertNotNull(numberStr);
-        PhoneNumber phoneNumber = new PhoneNumber(operator.getValue(),firstNumber,numberStr);
+        PhoneNumber phoneNumber = new PhoneNumber(operator.getValue(), firstNumber, numberStr);
 
         assertNotNull(phoneNumber);
 
@@ -113,8 +115,10 @@ class UtilsPhonebookTest {
         assertEquals("00", number.substring(0, 2));
         assertEquals(14, number.length());
         assertEquals(number.substring(2, 5), CountryCode.BULGARIA.getValue());
-        for(Operator o: Operator.values()){
-            if(number.substring(5, 7).equals(o.getValue())){
+        assertTrue(number.substring(8, 14).matches("\\d+"));
+
+        for (Operator o : Operator.values()) {
+            if (number.substring(5, 7).equals(o.getValue())) {
                 operator = o;
                 flag = true;
                 break;
@@ -126,7 +130,7 @@ class UtilsPhonebookTest {
         numberStr = number.substring(8, 14);
 
         assertNotNull(numberStr);
-        phoneNumber = new PhoneNumber(operator.getValue(),firstNumber,numberStr);
+        phoneNumber = new PhoneNumber(operator.getValue(), firstNumber, numberStr);
 
         assertNotNull(phoneNumber);
 
@@ -134,8 +138,9 @@ class UtilsPhonebookTest {
 
         assertEquals('0', number.charAt(0));
         assertEquals(10, number.length());
-        for(Operator o: Operator.values()){
-            if(number.substring(1, 3).equals(o.getValue())){
+        assertTrue(number.substring(4, 10).matches("\\d+"));
+        for (Operator o : Operator.values()) {
+            if (number.substring(1, 3).equals(o.getValue())) {
                 operator = o;
                 flag = true;
                 break;
@@ -147,7 +152,7 @@ class UtilsPhonebookTest {
         numberStr = number.substring(4, 10);
 
         assertNotNull(numberStr);
-        phoneNumber = new PhoneNumber(operator.getValue(),firstNumber,numberStr);
+        phoneNumber = new PhoneNumber(operator.getValue(), firstNumber, numberStr);
 
         assertNotNull(phoneNumber);
     }
@@ -158,6 +163,6 @@ class UtilsPhonebookTest {
         assertNotNull(menu);
         int choice = 1;
 
-        assertFalse(choice>7 || choice<0);
+        assertFalse(choice > 7 || choice < 0);
     }
 }

@@ -1,6 +1,6 @@
 package phonebook;
 
-public class  PhoneNumber {
+public class PhoneNumber {
     private String prefix = "+";
     private String countryCallCode;
     private String operator;
@@ -9,6 +9,7 @@ public class  PhoneNumber {
 
     private PhoneNumber() {
     }
+
     public PhoneNumber(String operator, char firstNumber, String number) {
         this.prefix = "+";
         this.countryCallCode = CountryCode.BULGARIA.getValue();
@@ -20,6 +21,6 @@ public class  PhoneNumber {
 
     @Override
     public String toString() {
-        return prefix + countryCallCode +  operator + firstNumber + number;
+        return prefix + countryCallCode + operator + firstNumber + number;
     }
 }

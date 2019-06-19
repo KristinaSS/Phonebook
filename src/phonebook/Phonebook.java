@@ -66,11 +66,13 @@ public class Phonebook {
             for (Pair num : phonebook.getPairs()) {
                 if (num.getPhoneNumber().toString().compareTo(phoneNumber.toString()) == 0) {
                     flag = true;
+                    break;
                 }
             }
             if (!flag)
                 break;
             System.out.println("PhoneNumber already exits in PhoneBook");
+            flag = false;
         }
         phonebook.getPairs().add(new Pair(enterName(), phoneNumber, 0));
 

@@ -6,10 +6,12 @@ public enum Operator {
     VIVACOM("87");
 
     String opCode;
+
     Operator(String code) {
         opCode = code;
     }
-    public String getValue(){
+
+    public String getValue() {
         return opCode;
     }
 

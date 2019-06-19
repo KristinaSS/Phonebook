@@ -7,8 +7,9 @@ import java.util.Scanner;
 
 import static phonebook.Phonebook.*;
 
-public class menu {
+public class Menu {
     private static final Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         List<String> menu = new ArrayList<>();
         menu.add("Menu");
@@ -50,7 +51,7 @@ public class menu {
                     continue;
                 case 0:
                     System.out.println("Goodbye!");
-                    if(phonebook!=null)
+                    if (phonebook != null)
                         UtilsPhonebook.writeTextFile(phonebook);
                     break;
             }
