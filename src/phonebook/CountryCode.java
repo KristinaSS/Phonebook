@@ -1,6 +1,8 @@
 package phonebook;
 
 public enum CountryCode {
+    //decided to do enums with better future functionality
+
     BULGARIA("359");
 
     String cCode;

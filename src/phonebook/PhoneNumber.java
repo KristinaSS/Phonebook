@@ -1,6 +1,9 @@
 package phonebook;
 
 public class PhoneNumber {
+
+    /*I made a PhoneNumber class for better functionality */
+
     private String prefix = "+";
     private String countryCallCode;
     private String operator;

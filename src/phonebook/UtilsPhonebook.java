@@ -33,6 +33,15 @@ public class UtilsPhonebook {
     //Functions
 
     public static List<String> readTextFile() {
+
+        // a function for reading a text file, using nio
+        /* I have another function for writing in a text file, the reason i
+        *  made it so it writes in another file is because in the original
+        * text file i have a few rows that should be skipped because they
+        * aren't in the correct format and to show that it works.
+        *
+        * The function for writing in files is a bonus*/
+
         List<String> lines = Collections.emptyList();//C:\Users\Kristina\IdeaProjects\Phonebook\phoneBook.txt
         try {
             lines = Files.readAllLines(Paths.get("phoneBook.txt"), StandardCharsets.UTF_8);
@@ -45,6 +54,14 @@ public class UtilsPhonebook {
     }
 
     public static boolean writeTextFile(Phonebook phonebook) {
+
+        //function for writing files
+
+        /*This function writes in a file only those pairs that
+        * are actually registered in the phonebook, i have a call function in Phonebook class
+        * that "calls numbers", if the number dialed isnt in the phonebook you are asked if you
+        * want to save the number as a person in your phonebook, the saved numbers are written
+        * but the ones that aren't will not be written in this file*/
         try {
             FileWriter writer = new FileWriter("PhonebookOutput.txt");
             String check = "+359";
@@ -64,6 +81,11 @@ public class UtilsPhonebook {
 
     static Pair checkPair(String line) {
 
+        /*This is a function that first takes a string and
+        splits it, then calls another function to check if the phone number
+         entered/read is in the correct format, if not returns null
+          if it is a new pair is created and returned*/
+
         String[] split = line.split("[ ][|][ ]");
 
         PhoneNumber phoneNumber = null;
@@ -78,6 +100,12 @@ public class UtilsPhonebook {
     }
 
     static String enterName() {
+
+        /* A simple function that uses Scanner to enter a string
+        * the string is then checked if its too long, and asks the user as
+        * many times as possible to enter the string until it is the correct size
+        * at the end returns the string*/
+
         String name;
         while (true) {
             scanner.nextLine();
@@ -93,6 +121,12 @@ public class UtilsPhonebook {
     }
 
     static PhoneNumber enterPhoneNumber() {
+
+        /* A simple function that calls a function that checks
+        * a string entered using Scanner and checks if the string entered is
+        * in the correct format, if not  the user needs to enter a phoneNumber - string
+        * again, in the end the function returns the phoneNumber */
+
         String phoneNumberStr;
         PhoneNumber phoneNumber;
         scanner.nextLine();
@@ -113,6 +147,14 @@ public class UtilsPhonebook {
         String numberStr = null;
         char firstNumber = ' ';
 
+        //kinda annoying this method is so long but im working with enums for better future functionality
+        //another choice was with patterns but i chose enums
+
+        /* Through ifs, we check if the given string is in the right format, if all
+        * ends well at the end of the function an object of class PhoneNumber is created
+        * if not returns null*/
+
+        //for numbers like +359 88 8 888888
         if (number.charAt(0) == '+'
                 && number.length() == 13
                 && number.substring(1, 4).equals(CountryCode.BULGARIA.getValue())) {//+359878123456
@@ -135,6 +177,7 @@ public class UtilsPhonebook {
             }
 
         }
+        //for numbers like 00 359 88 8 888888
         if (number.substring(0, 2).equals("00")
                 && number.length() == 14
                 && number.substring(2, 5).equals(CountryCode.BULGARIA.getValue())) {//00 359 87 8 123456,
@@ -155,6 +198,8 @@ public class UtilsPhonebook {
                 flag = false;
             }
         }
+
+        //for numbers like 0 88 8 888888
         if (number.charAt(0) == '0' && number.length() == 10) { // 0 87 8 123456
             for (Operator o : Operator.values()) {
                 if (number.substring(1, 3).equals(o.getValue())) {
@@ -181,6 +226,13 @@ public class UtilsPhonebook {
     }
 
     public static int printMenu(List<String> menu) {
+
+        /* A simple method that prints the list given
+        * then you make a choice by entering a number
+        * if the entered number is correct you continue if not you
+        * are asked again until you enter the correct number
+        * this method returns the choice*/
+
         for (String s : menu) {
             System.out.println(s);
         }

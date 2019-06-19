@@ -16,6 +16,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static phonebook.UtilsPhonebook.checkPhoneNumber;
 
 class UtilsPhonebookTest {
+    /*
+    I admit my knowledge of unit testing isn't the best, but i tried to
+     * remember as much as i can, searched the internet and tried my best.
+     */
+
     @Test
     void readTextFile() throws IOException {
         List<String> lines = new ArrayList<>();

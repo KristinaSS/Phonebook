@@ -6,6 +6,8 @@ public class Pair {
     private PhoneNumber phoneNumber;
     private int timesCalled;
 
+    //singleton and constructors
+
     public static Pair getInstance() {
         if (pairInstance == null)
             pairInstance = new Pair();
@@ -20,6 +22,8 @@ public class Pair {
         this.phoneNumber = phoneNumber;
         this.timesCalled = timesCalled;
     }
+
+    //getters and setters and to string methods
 
     public String getName() {
         return name;

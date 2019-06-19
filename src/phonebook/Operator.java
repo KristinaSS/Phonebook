@@ -1,6 +1,8 @@
 package phonebook;
 
 public enum Operator {
+    //decided to do enums for better future functionality
+
     A1("88"),
     TELENOR("89"),
     VIVACOM("87");

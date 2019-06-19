@@ -3,14 +3,25 @@ import phonebook.UtilsPhonebook;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import static phonebook.Phonebook.*;
 
 public class Menu {
-    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+
+        /*main menu, has a switch case in an endless look to act as the backbone
+        * of a menu,
+        *
+        * The project could have been done with a lot of things to make it more
+        * practical and not as spaghettish as it is at the moment, times are rough and
+        * with the time given this is the best i can do. Thank you in
+        * advance for taking the time to look at my project.
+        *
+        *                                                    - Kristina
+        * */
+
+
         List<String> menu = new ArrayList<>();
         menu.add("Menu");
         menu.add("1. Create Phonebook");
